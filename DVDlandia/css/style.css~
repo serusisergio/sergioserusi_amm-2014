@@ -1,0 +1,132 @@
+body {
+    background-color: white;
+    font: 13px/20px "Arial",OpenSans,sans-serif;
+    width: 1000px;
+    margin: 0px auto;
+}
+
+header {
+    background-color: #000080;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-image: url('../images/header.jpeg');
+    background-repeat: no-repeat;
+   	border-top-left-radius: 19px;
+   	border-bottom-left-radius: 15px;
+    border-top-right-radius: 19px;    
+    border-bottom-right-radius: 15px;
+}
+
+
+
+#title , #footertesto, #top, .logout{
+	text-align: center;
+	color: white;
+	font: 13px/20px "Arial",openSans,sans-serif;
+}
+
+#footer {
+    background-color: #000080;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-image: url('../images/header.jpeg');
+    background-repeat: no-repeat;
+   	border-top-left-radius: 19px;
+   	border-bottom-left-radius: 15px;
+    border-top-right-radius: 19px;    
+    border-bottom-right-radius: 15px;
+}
+
+
+#sidebar1{
+    background-color: white;
+    float: right;
+    width: 230px;
+    font-size: 15px;
+}
+
+#htmlval, #cssval{
+	color:white;
+}
+
+#content {
+
+    margin-left: 50px;
+    margin-right: 250px;
+    padding: 10px;
+    padding-left: 50px;
+    min-height: 500px;
+    border-right: 1px solid #1c345a;
+}
+
+#htmlval{
+    background-image: url('../images/img19.gif');
+    background-repeat: no-repeat;
+    background-position: center left;
+    padding: 20px;
+}
+
+#cssval{
+    background-image: url('../images/img20.gif');
+    background-repeat: no-repeat;
+    background-position: center left;
+    padding: 20px;
+}
+
+#top{
+	float: center-right;
+}
+
+input{
+    border: 1px solid #1c345a;
+}
+
+input[type=submit], button{
+    color: #ffffff;
+    background-color: #000080;
+    height: 2em;
+    font-weight: bold;
+    border-radius: 1em;
+    border: 1px solid #1c345a;
+    min-width: 100px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+
+}
+
+input[type=submit]:hover, button:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+
+
+
+.input-form{
+    line-height: 3em;
+    border-bottom: 1px solid #1c345a;
+}
+
+
+.input-form input[type=text], .input-form input[type=password]{
+    display: inline-block;
+    width:59%;
+}
+
+.input-form select{
+    display: inline-block;
+    width:59%;
+    border: 1px solid #1c345a;
+    background-color: #ffffff;
+}
+
+.input-form input[type=submit], .input-form button{
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
