@@ -123,7 +123,7 @@ class CategoriaFactory {
         $categoria = new Categoria();
         $categoria->setId($row['id']);
         $categoria->setNome($row['nomecategoria']);
-        $categoria->setCasaDiscografica(CostruttoreFactory::instance()->getCasaDiscograficaPerId($row['idcasadiscografica']));
+        $categoria->setCasaDiscografica(CasaDiscograficaFactory::instance()->getCasaDiscograficaPerId($row['idcasadiscografica']));
         $categoria->setPrezzo($row['prezzo']);
         return $categoria;
     }

@@ -168,7 +168,7 @@ FROM `clienti` ";
                 break;
 
             case User::Gestore:
-                $query = "select * from gestore where id = ?";
+                $query = "select * from gestori where id = ?";
 
                 $stmt = $mysqli->stmt_init();
                 $stmt->prepare($query);
@@ -271,15 +271,15 @@ FROM `clienti` ";
 */
     private function salvaCliente(Cliente $c, mysqli_stmt $stmt) {
         $query = " update clienti set
-password = ?,
-nome = ?,
-cognome = ?,
-email = ?,
-numero_civico = ?,
-citta = ?,
-via = ?,
-where clienti.id = ?
-";
+				password = ?,
+				nome = ?,
+				cognome = ?,
+				email = ?,
+				numero_civico = ?,
+				citta = ?,
+				via = ?,
+				where clienti.id = ?
+				";
         $stmt->prepare($query);
         if (!$stmt) {
             error_log("[salvaCliente] impossibile" .
@@ -287,7 +287,7 @@ where clienti.id = ?
             return 0;
         }
 
-        if (!$stmt->bind_param('sssssssi', $c->getPassword(), $c->getNome(), $c->getCognome(), $c->getEmail(), $c->getNumeroCivico(), $c->getCitta(), $c->getVia(), $c->getId())) {
+        if (!$stmt->bind_param('ssssisssi', $c->getPassword(), $c->getNome(), $c->getCognome(), $c->getEmail(), $c->getNumeroCivico(), $c->getCitta(), $c->getVia(), $c->getId())) {
             error_log("[salvaCliente] impossibile" .
                     " effettuare il binding in input");
             return 0;

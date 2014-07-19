@@ -1,0 +1,2 @@
+<p>Gestore - <?= $user->getNome().' '.$user->getCognome()?>  <a href="gestore?cmd=logout">Logout</a></p>
+

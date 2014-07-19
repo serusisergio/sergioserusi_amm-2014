@@ -271,15 +271,15 @@ FROM `clienti` ";
 */
     private function salvaCliente(Cliente $c, mysqli_stmt $stmt) {
         $query = " update clienti set
-password = ?,
-nome = ?,
-cognome = ?,
-email = ?,
-numero_civico = ?,
-citta = ?,
-via = ?,
-where clienti.id = ?
-";
+				password = ?,
+				nome = ?,
+				cognome = ?,
+				email = ?,
+				numero_civico = ?,
+				citta = ?,
+				via = ?,
+				where clienti.id = ?
+				";
         $stmt->prepare($query);
         if (!$stmt) {
             error_log("[salvaCliente] impossibile" .
@@ -287,7 +287,7 @@ where clienti.id = ?
             return 0;
         }
 
-        if (!$stmt->bind_param('sssssssi', $c->getPassword(), $c->getNome(), $c->getCognome(), $c->getEmail(), $c->getNumeroCivico(), $c->getCitta(), $c->getVia(), $c->getId())) {
+        if (!$stmt->bind_param('ssssisssi', $c->getPassword(), $c->getNome(), $c->getCognome(), $c->getEmail(), $c->getNumeroCivico(), $c->getCitta(), $c->getVia(), $c->getId())) {
             error_log("[salvaCliente] impossibile" .
                     " effettuare il binding in input");
             return 0;
@@ -310,15 +310,15 @@ where clienti.id = ?
 */
     private function salvaGestore(Gestore $d, mysqli_stmt $stmt) {
         $query = " update gestori set
-password = ?,
-nome = ?,
-cognome = ?,
-email = ?,
-numero_civico = ?,
-citta = ?,
-via = ?,
-where gestori.id = ?
-";
+			password = ?,
+			nome = ?,
+			cognome = ?,
+			email = ?,
+			numero_civico = ?,
+			citta = ?,
+			via = ?,
+			where gestori.id = ?
+			";
         $stmt->prepare($query);
         if (!$stmt) {
             error_log("[salvaGestore] impossibile" .
@@ -326,7 +326,7 @@ where gestori.id = ?
             return 0;
         }
 
-        if (!$stmt->bind_param('sssssssi', $d->getPassword(), $d->getNome(), $d->getCognome(), $d->getEmail(), $d->getNumeroCivico(), $d->getCitta(), $d->getVia(), $d->getId())) {
+        if (!$stmt->bind_param('ssssisssi', $d->getPassword(), $d->getNome(), $d->getCognome(), $d->getEmail(), $d->getNumeroCivico(), $d->getCitta(), $d->getVia(), $d->getId())) {
             error_log("[salvaGestore] impossibile" .
                     " effettuare il binding in input");
             return 0;

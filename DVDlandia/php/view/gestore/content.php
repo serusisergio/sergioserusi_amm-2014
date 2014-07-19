@@ -24,17 +24,16 @@ switch ($vd->getSottoPagina()) {
 
 <?php default: ?>
 <h2>Pannello di Controllo</h2>
-<p>
+<p id="benv">
 Benvenuto, <?= $user->getNome() ?>
 </p>
 <p>
 Scegli una fra le seguenti sezioni:
 </p>
-<ul>
-<li><a href="gestore/anagrafica">Anagrafica</a></li>
-<li><a href="gestore/noleggi">Noleggi</a></li>
-<li><a href="gestore/film">Film</a></li>
-
+<ul class="panel" id="panel"> 
+<li><a id="anagraficaa" href="gestore/anagrafica">Anagrafica</a></li>
+<li><a id="noleggio" href="gestore/noleggi">Noleggi</a></li>
+<li><a id="filmm" href="gestore/dvdi">Film</a></li>
 </ul>
 <?php
         break;

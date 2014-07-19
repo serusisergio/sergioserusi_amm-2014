@@ -43,7 +43,10 @@ l'utente (errori e conferme delle operazioni)
 					<h1>DVDlandia</h1>
 				</div>
 				<div id="top">
-
+						<?php
+                        $logo = $vd->getLogoFile();
+                        require "$logo";
+                        ?>
 				</div>
 			</header>
 

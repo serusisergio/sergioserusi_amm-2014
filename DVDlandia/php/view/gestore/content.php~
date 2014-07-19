@@ -16,25 +16,24 @@ switch ($vd->getSottoPagina()) {
         include 'noleggi_json.php';
         break;
     
-    case 'prenotazione':
-        include_once 'prenotazione.php';
+    case 'crea_dvd':
+        include_once 'crea_dvd.php';
         break;
-
-    default:
         ?>
-<h2 class="icon-title">Area Cliente</h2>
-<p>
+
+
+<?php default: ?>
+<h2>Pannello di Controllo</h2>
+<p id="benv">
 Benvenuto, <?= $user->getNome() ?>
 </p>
 <p>
 Scegli una fra le seguenti sezioni:
 </p>
-<ul class="panel"> 
-<li><a href="cliente/anagrafica">Anagrafica</a></li>
-<li><a href="cliente/dvdi">Film</a></li>
-<li><a href="cliente/noleggi">Elenco Noleggi</a></li>
-
-
+<ul class="panel" id="panel"> 
+<li><a id="anagraficaa" href="cliente/anagrafica">Anagrafica</a></li>
+<li><a id="noleggio" href="cliente/noleggi">Noleggi</a></li>
+<li><a id="filmm" href="cliente/dvdi">Film</a></li>
 </ul>
 <?php
         break;
