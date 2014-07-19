@@ -155,10 +155,10 @@ CREATE TABLE IF NOT EXISTS `dvdi` (
 --
 
 INSERT INTO `dvdi` (`id`, `idcategoria`, `anno`, `titolo`) VALUES
-(1, 1, 2008,'rembo'),
-(2, 1, 2009,'play'),
-(3, 2, 2004,'just'),
-(4, 3, 1999,'rambo');
+(1, 1, 2008),
+(2, 1, 2009),
+(3, 2, 2004),
+(4, 3, 1999);
 
 --
 -- Limiti per le tabelle scaricate

@@ -54,6 +54,7 @@ class BaseController {
             }
         } else {
             if ($this->loggedIn()) {
+            	echo "Utente autenticato Base";
                 //utente autenticato
                 // questa variabile viene poi utilizzata dalla vista
                 $user = UserFactory::instance()->cercaUtentePerId($_SESSION[self::user], $_SESSION[self::role]);
@@ -62,6 +63,7 @@ class BaseController {
             } else {
             	echo "Stampa da dentro else,non  autenticato BAse";
                 // utente non autenticato
+                echo "utente non autenticato Base";
                 $this->showLoginPage($vd);
             }
         }

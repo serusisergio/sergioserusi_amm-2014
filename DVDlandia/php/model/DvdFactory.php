@@ -57,10 +57,10 @@ class DvdFactory {
 * @return array|\Dvd
 */
     private function &inizializzaListaDvdi(mysqli_stmt $stmt) {
-        $dvdi = array();
+        $veicoli = array();
 
         if (!$stmt->execute()) {
-            error_log("[inizializzaListaDvdi] impossibile" .
+            error_log("[inizializzaListaDvd] impossibile" .
                     " eseguire lo statement");
             return $dvdi;
         }
@@ -73,7 +73,7 @@ class DvdFactory {
 
 
         if (!$stmt->bind_result($id, $idcategoria, $anno, $titolo)) {
-            error_log("[inizializzaListaDvdi] impossibile" .
+            error_log("[inizializzaListaDvd] impossibile" .
                     " effettuare il binding in output");
             return array();
         }
@@ -84,9 +84,9 @@ class DvdFactory {
             $dvd->setAnno($anno);
             $dvd->setTitolo($titolo);
             $dvd->setIsPrenotabile(NoleggioFactory::instance()->isDvdPrenotabile($id, "now"));
-            $dvd[] = $dvd;
+            $dvdi[] = $dvd;
         }
-        return $dvd;
+        return $dvdi;
     }
 
     public function creaDvdDaArray($row) {

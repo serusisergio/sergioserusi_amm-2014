@@ -32,7 +32,7 @@ class UserFactory {
 * Carica un utente tramite username e password
 * @param string $username
 * @param string $password
-* @return \User|\Dipendente|\Cliente
+* @return \User|\Gestore|\Cliente
 */
     public function caricaUtente($username, $password) {
 
@@ -88,7 +88,7 @@ class UserFactory {
             return null;
         }
 
-        $dipendente = self::caricaGestoreDaStmt($stmt);
+        $gestore = self::caricaGestoreDaStmt($stmt);
         if (isset($gestore)) {
             $mysqli->close();
             return $gestore;
@@ -168,7 +168,7 @@ FROM `clienti` ";
                 break;
 
             case User::Gestore:
-                $query = "select * from gestore where id = ?";
+                $query = "select * from gestori where id = ?";
 
                 $stmt = $mysqli->stmt_init();
                 $stmt->prepare($query);
@@ -287,7 +287,7 @@ where clienti.id = ?
             return 0;
         }
 
-        if (!$stmt->bind_param('ssssisssi', $c->getPassword(), $c->getNome(), $c->getCognome(), $c->getEmail(), $c->getNumeroCivico(), $c->getCitta(), $c->getVia(), $c->getId())) {
+        if (!$stmt->bind_param('sssssssi', $c->getPassword(), $c->getNome(), $c->getCognome(), $c->getEmail(), $c->getNumeroCivico(), $c->getCitta(), $c->getVia(), $c->getId())) {
             error_log("[salvaCliente] impossibile" .
                     " effettuare il binding in input");
             return 0;

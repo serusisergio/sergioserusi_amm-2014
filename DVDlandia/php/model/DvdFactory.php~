@@ -29,7 +29,7 @@ class DvdFactory {
 * restituisce i film presenti
 * @return array|\Dvd
 */
-    public function &getDvd() {
+    public function &getDvdi() {
         $mysqli = Db::getInstance()->connectDb();
         if (!isset($mysqli)) {
             error_log("[getDvdi] impossibile inizializzare il database");
@@ -57,10 +57,10 @@ class DvdFactory {
 * @return array|\Dvd
 */
     private function &inizializzaListaDvdi(mysqli_stmt $stmt) {
-        $dvdi = array();
+        $veicoli = array();
 
         if (!$stmt->execute()) {
-            error_log("[inizializzaListaDvdi] impossibile" .
+            error_log("[inizializzaListaDvd] impossibile" .
                     " eseguire lo statement");
             return $dvdi;
         }
@@ -73,7 +73,7 @@ class DvdFactory {
 
 
         if (!$stmt->bind_result($id, $idcategoria, $anno, $titolo)) {
-            error_log("[inizializzaListaDvdi] impossibile" .
+            error_log("[inizializzaListaDvd] impossibile" .
                     " effettuare il binding in output");
             return array();
         }
@@ -83,10 +83,10 @@ class DvdFactory {
             $dvd->setCategoria(CategoriaFactory::instance()->getCategoriaPerId($idcategoria));
             $dvd->setAnno($anno);
             $dvd->setTitolo($titolo);
-            $dvd->setIsPrenotabile(NoleggioFactory::instance()->isDvdPrenotabile($id, "now"));
-            $dvd[] = $dvd;
+            $dvd->setIsPrenotabile(NoleggioFactory::instance()->isVeicoloPrenotabile($id, "now"));
+            $dvdi[] = $dvd;
         }
-        return $dvd;
+        return $veicoli;
     }
 
     public function creaDvdDaArray($row) {
