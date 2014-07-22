@@ -27,8 +27,7 @@ Scegli una fra le seguenti sezioni:
 </p>
 <ul class="panel" id="panel"> 
 <li><a id="anagraficaa" href="cliente/anagrafica">Anagrafica</a></li>
-<li><a id="filmm" href="cliente/dvdi">Film        </a></li>
-<li><a id="noleggio" href="cliente/noleggi">Elenco Noleggi</a></li>
+<li><a id="filmm" href="cliente/dvdi">Film</a></li>
 </ul>
 <?php
         break;

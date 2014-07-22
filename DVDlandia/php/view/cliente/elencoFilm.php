@@ -6,7 +6,6 @@
         <th>Titolo</th>
         <th>Anno Produzione</th>
         <th>Prezzo</th>
-        <th>Prenota</th>
     </tr>
     <?
     foreach ($dvdi as $dvd) {
@@ -17,7 +16,6 @@
             <td><?= $dvd->getTitolo() ?></td>
             <td><?= $dvd->getAnno() ?></td>
             <td><?= $dvd->getPrezzo() ?> €/giorno</td>
-            <td><a href="cliente/dvdi?cmd=prenota&dvd=<?= $dvd->getId() ?>" title="Prenotazione Film">
 </tr>
 <? } ?>
 </table>
