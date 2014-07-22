@@ -74,7 +74,7 @@ class ClienteController extends BaseController {
                     //visualizzazione del parco auto
                     case 'dvdi':
                         $dvdi = DvdFactory::instance()->getDvdi();
-                        print_r($dvdi);
+                        //print_r($dvdi);
                         $vd->setSottoPagina('elencoFilm');
                         break;
 

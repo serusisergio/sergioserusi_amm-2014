@@ -180,7 +180,6 @@ JOIN dvdi ON idfilm = dvdi.id
 
         switch (count($par)) {
             case 1:
-            	echo "errore bind 1 noleggio swithc";
                 if (!$stmt->bind_param($bind, $par[0])) {
                     error_log("[ricercaNoleggi] impossibile" .
                             " effettuare il binding in input");
@@ -189,7 +188,6 @@ JOIN dvdi ON idfilm = dvdi.id
                 }
                 break;
             case 2:
-            		echo "errore bind 2 noleggio swithc";
                     if (!$stmt->bind_param($bind, $par[0], $par[1])) {
                     error_log("[ricercaNoleggi] impossibile" .
                             " effettuare il binding in input");
@@ -199,7 +197,6 @@ JOIN dvdi ON idfilm = dvdi.id
                 break;
 
             case 3:
-            	echo "errore bind 3 noleggio swithc";
                 if (!$stmt->bind_param($bind, $par[0], $par[1], $par[2])) {
                     error_log("[ricercaNoleggi] impossibile" .
                             " effettuare il binding in input");
@@ -209,7 +206,6 @@ JOIN dvdi ON idfilm = dvdi.id
                 break;
 
             case 4:
-            	echo "errore bind 4 noleggio swithc";
                 if (!$stmt->bind_param($bind, $par[0], $par[1], $par[2], $par[3])) {
                     error_log("[ricercaNoleggi] impossibile" .
                             " effettuare il binding in input");
@@ -235,7 +231,7 @@ JOIN dvdi ON idfilm = dvdi.id
 
         $row = array();
         $bind = $stmt->bind_result(
-                $row['noleggi_id'], $row['noleggi_idfilm'], $row['noleggi_idcliente'], $row['noleggi_datainizio'], $row['noleggi_datafine'], $row['noleggi_costo'], $row['clienti_id'], $row['clienti_nome'], $row['clienti_cognome'], $row['clienti_email'], $row['clienti_via'], $row['clienti_numero_civico'], $row['clienti_citta'], $row['clienti_username'], $row['clienti_password'], $row['dvdi_id'], $row['dvdi_idcategoria'], $row['dvdi_anno'],$row['dvdi_titolo']);//titolo , $row['dvdi_titolo']
+                $row['noleggi_id'], $row['noleggi_idfilm'], $row['noleggi_idcliente'], $row['noleggi_datainizio'], $row['noleggi_datafine'], $row['noleggi_costo'], $row['clienti_id'], $row['clienti_nome'], $row['clienti_cognome'], $row['clienti_email'], $row['clienti_via'], $row['clienti_numero_civico'], $row['clienti_citta'], $row['clienti_username'], $row['clienti_password'], $row['dvdi_id'], $row['dvdi_idcategoria'], $row['dvdi_anno'],$row['dvdi_titolo']);
 
         if (!$bind) {
             error_log("[caricaNoleggiDaStmt] impossibile" .
