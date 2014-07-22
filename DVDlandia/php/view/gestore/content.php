@@ -4,21 +4,14 @@ switch ($vd->getSottoPagina()) {
         include_once 'anagrafica.php';
         break;
 
-    case 'noleggi':
-        include_once 'noleggi.php';
-        break;
-    
     case 'elencoFilm':
         include_once 'elencoFilm.php';
-        break;
-    
-    case 'noleggi_json':
-        include 'noleggi_json.php';
         break;
     
     case 'crea_dvd':
         include_once 'crea_dvd.php';
         break;
+
         ?>
 
 
@@ -32,7 +25,6 @@ Scegli una fra le seguenti sezioni:
 </p>
 <ul class="panel" id="panel"> 
 <li><a id="anagraficaa" href="gestore/anagrafica">Anagrafica</a></li>
-<li><a id="noleggio" href="gestore/noleggi">Noleggi</a></li>
 <li><a id="filmm" href="gestore/film">Film</a></li>
 </ul>
 <?php
