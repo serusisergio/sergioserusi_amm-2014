@@ -18,17 +18,13 @@ class Dvd {
      */
     private $anno;
 
-    /**
-     * Flag che indica se è possibile prenotare il film
-     * @var boolean
-     */
-    private $isprenotabile;
 
     /**
      * Titolo del fim
      * @var String
      */
     private $titolo;
+    
     private $prezzo;
 
     /**
@@ -75,18 +71,6 @@ class Dvd {
         return $this->anno;
     }
 
-    public function setIsPrenotabile($flag) {
-        $bool = filter_var($flag, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
-        if (isset($bool)) {
-            $this->isprenotabile = $bool;
-            return true;
-        }
-        return false;
-    }
-
-    public function isPrenotabile() {
-        return $this->isprenotabile;
-    }
 
     public function setCategoria($categoria) {
         $this->categoria = $categoria;

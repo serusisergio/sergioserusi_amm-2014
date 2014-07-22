@@ -61,10 +61,6 @@ class ClienteController extends BaseController {
             if (isset($request["subpage"])) {
                 switch ($request["subpage"]) {
                     // visualizzazione dei noleggi richiesti
-                    case 'noleggi':
-                        $noleggi = NoleggioFactory::instance()->noleggiPerCliente($user);
-                        $vd->setSottoPagina('noleggi');
-                        break;
                         
                     // modifica dei dati anagrafici                    
                     case 'anagrafica':
@@ -128,83 +124,6 @@ class ClienteController extends BaseController {
                         $this->creaFeedbackUtente($msg, $vd, "Password aggiornata");
                         $this->showHomeCliente($vd);
                         break;
-
-                    //form per la prenotazione di un veicolo
-                    case 'prenota':
-                        $iddvd = filter_var($request['dvd'], FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
-                        if (isset($iddvd)) {
-
-                            $vd->setSottoPagina('prenotazione');
-                        }
-                        $this->showHomeCliente($vd);
-                        break;
-
-                    //creazione di una nuova prenotazione
-                    case 'altra_prenotazione':
-                        $vd->setSottoPagina('elencoFilm');
-                        $msg = array();
-                        $nuova = new Noleggio();
-
-                        $nuova->setDvd(DvdFactory::instance()->getDvdPerId($request['iddvd']));
-                        $nuova->setCliente($user);
-                        $datainizio = DateTime::createFromFormat("Y-m-d", ($request['datainizio']));
-                        $datafine = DateTime::createFromFormat("Y-m-d", ($request['datafine']));
-
-                        if ($datainizio) {
-                            if ($datainizio->getTimeStamp() >= $this->oggi()) {
-                                $nuova->setDatainizio($request['datainizio']);
-                            } else {
-                                $msg[] = '<li> Inserire una data di inizio valida </li>';
-                            }
-                        } else {
-                            $msg[] = '<li> Inserire una data di inizio valida </li>';
-                        }
-
-                        if ($datafine) {
-                            if ($datafine->getTimeStamp() >= $this->oggi()) {
-                                $nuova->setDatafine($request['datafine']);
-                            } else {
-                                $msg[] = '<li> Inserire una data di inizio valida </li>';
-                            }
-                        } else {
-                            $msg[] = '<li> Inserire una data di fine valida </li>';
-                        }
-                        
-                        
-                        if (count($msg) == 0) {
-                            if($datafine->getTimeStamp() < $datainizio->getTimeStamp()){
-                                $msg[] = '<li>La data di inizio è successiva alla data di fine</li>';
-                            }
-                        }
-
-                        //controllo che il dvd sia libero tutti i giorni della prenotazione
-                        if (count($msg) == 0) {
-                            $costo = (($datafine->getTimeStamp() - $datainizio->getTimeStamp()) / 86400 + 1 ) * $nuova->getDvd()->getCategoria()->getPrezzo();
-                            $nuova->setCosto($costo);
-                            $flag = true;
-                            $iteratore = $datainizio->getTimeStamp();
-                            $fine = $datafine->getTimeStamp();
-                            while ($iteratore <= $fine && $flag) {
-                                //$msg[] = '<li>Iteratore '.$iteratore.'</li>';
-                                if (!NoleggioFactory::instance()->isDvdPrenotabile($request['iddvd'], $iteratore)) {
-                                    $msg[] = '<li> Il dvd non è prenotabile per tutto l\'intervallo scelto</li>';
-                                    $flag = false;
-                                }
-                                $iteratore += 86400;
-                            }
-                        }
-
-                        if (count($msg) == 0) {
-                            if (NoleggioFactory::instance()->nuovo($nuova) != 1) {
-                                $msg[] = '<li> Impossibile creare la prenotazione </li>';
-                            }
-                        }
-
-                        $this->creaFeedbackUtente($msg, $vd, "Prenotazione aggiunta, costo: ". $nuova->getCosto()." €");
-                        $dvdi = DvdFactory::instance()->getDvdi();
-                        $this->showHomeUtente($vd);
-                        break;
-
 
                     default : $this->showLoginPage($vd);
                 }

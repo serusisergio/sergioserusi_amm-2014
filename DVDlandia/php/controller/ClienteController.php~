@@ -61,10 +61,6 @@ class ClienteController extends BaseController {
             if (isset($request["subpage"])) {
                 switch ($request["subpage"]) {
                     // visualizzazione dei noleggi richiesti
-                    case 'noleggi':
-                        $noleggi = NoleggioFactory::instance()->noleggiPerCliente($user);
-                        $vd->setSottoPagina('noleggi');
-                        break;
                         
                     // modifica dei dati anagrafici                    
                     case 'anagrafica':
@@ -74,7 +70,7 @@ class ClienteController extends BaseController {
                     //visualizzazione del parco auto
                     case 'dvdi':
                         $dvdi = DvdFactory::instance()->getDvdi();
-                        print_r($dvdi);
+                        //print_r($dvdi);
                         $vd->setSottoPagina('elencoFilm');
                         break;
 

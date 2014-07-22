@@ -1,56 +1,57 @@
 <?php
 
 /**
-* @author SerusiSergio
-* Classe DVD
-*/
+ * @author SerusiSergio
+ * Classe DVD
+ */
 class Dvd {
 
     /**
-* Categoria del film
-* @var categoria
-*/
+     * Categoria del film
+     * @var categoria
+     */
     private $categoria;
 
     /**
-* Anno in cui è stato girato il film
-* @var int
-*/
+     * Anno in cui è stato girato il film
+     * @var int
+     */
     private $anno;
 
     /**
-* Flag che indica se è possibile prenotare il film
-* @var boolean
-*/
+     * Flag che indica se è possibile prenotare il film
+     * @var boolean
+     */
     private $isprenotabile;
 
     /**
-* Targa del veicolo
-* @var String
-*/
-    private $targa;
+     * Titolo del fim
+     * @var String
+     */
+    private $titolo;
+    private $prezzo;
 
     /**
-* Costruttore
-*/
+     * Costruttore
+     */
     public function __costruct() {
         
     }
 
     /**
-* Restituisce un identificatore unico per il veicolo
-* @return int
-*/
+     * restituisce un id unico per il dvd
+     * @return int
+     */
     public function getId() {
         return $this->id;
     }
 
     /**
-* Imposta un identificatore unico per il veicolo
-* @param int $id
-* @return boolean true se il valore e' stato aggiornato correttamente,
-* false altrimenti
-*/
+     * Imposta un id unico per il dvd
+     * @param int $id
+     * @return boolean true se il valore e' stato aggiornato correttamente,
+     * false altrimenti
+     */
     public function setId($id) {
         $intVal = filter_var($id, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
         if (!isset($intVal)) {
@@ -62,7 +63,7 @@ class Dvd {
     public function setAnno($anno) {
         $intVal = filter_var($anno, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
         if (isset($intVal)) {
-            if ($intVal > 1930 && $intVal <= date("Y")) {
+            if ($intVal > 1769 && $intVal <= date("Y")) {//prima auto al mondo risale al 1769
                 $this->anno = $intVal;
                 return true;
             }
@@ -74,33 +75,41 @@ class Dvd {
         return $this->anno;
     }
 
-    public function setPrenotabile($flag) {
+    public function setIsPrenotabile($flag) {
         $bool = filter_var($flag, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
         if (isset($bool)) {
-            $this->prenotabile = $bool;
+            $this->isprenotabile = $bool;
             return true;
         }
         return false;
     }
 
     public function isPrenotabile() {
-        return $this->prenotabile;
+        return $this->isprenotabile;
     }
 
-    public function setModello($modello) {
-        $this->modello = $modello;
+    public function setCategoria($categoria) {
+        $this->categoria = $categoria;
     }
 
-    public function getModello() {
-        return $this->modello;
+    public function getCategoria() {
+        return $this->categoria;
     }
 
-    public function getTarga() {
-        return $this->targa;
+    public function getTitolo() {
+        return $this->titolo;
     }
 
-    public function setTarga($targa) {
-        $this->targa = $targa;
+    public function setTitolo($titolo) {
+        $this->titolo = $titolo;
+    }
+
+    public function getPrezzo() {
+        return $this->prezzo;
+    }
+
+    public function setPrezzo($prezzo) {
+        $this->prezzo = $prezzo;
     }
 
 }
