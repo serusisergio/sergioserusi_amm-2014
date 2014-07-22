@@ -84,7 +84,7 @@ class BaseController {
     protected function showHomeCliente($vd) {
         // mostro la home dei clienti
 
-        $vd->setTitolo("DVDlandia - Noleggiando ");
+        $vd->setTitolo("DVDlandia - Gestione cliente ");
         $vd->setLogoFile(basename(__DIR__) . '/../view/cliente/logo.php');
         $vd->setRightBarFile(basename(__DIR__) . '/../view/cliente/rightBar.php');
         $vd->setContentFile(basename(__DIR__) . '/../view/cliente/content.php');
@@ -110,7 +110,7 @@ class BaseController {
 */
     function showHomeGestore($vd) {
         // mostro la home dei dipendenti
-        $vd->setTitolo("DVDlandia - Gestisci noleggi.");
+        $vd->setTitolo("DVDlandia - gestore");
         $vd->setLogoFile(basename(__DIR__) . '/../view/gestore/logo.php');
         $vd->setRightBarFile(basename(__DIR__) . '/../view/gestore/rightBar.php');
         $vd->setContentFile(basename(__DIR__) . '/../view/gestore/content.php');
@@ -205,7 +205,6 @@ class BaseController {
 * messaggi d'errore
 */
      protected function aggiornaIndirizzo($user, &$request, &$msg) {
-		echo "aggiornamento indirizzo";
         if (isset($request['via'])) {
             if (!$user->setVia($request['via'])) {
                 $msg[] = '<li>La via specificata non &egrave; corretta</li>';

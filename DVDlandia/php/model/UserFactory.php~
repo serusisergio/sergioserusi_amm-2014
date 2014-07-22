@@ -110,7 +110,7 @@ via as clienti_via,
 email as clienti_email,
 numero_civico as clienti_numero_civico,
 username as clienti_username,
-password as clienti_password,
+password as clienti_password
 FROM `clienti` ";
 
         $mysqli = Db::getInstance()->connectDb();
@@ -125,12 +125,10 @@ FROM `clienti` ";
             $mysqli->close();
             return $clienti;
         }
-
         while ($row = $result->fetch_array()) {
             $clienti[] = self::creaClienteDaArray($row);
         }
-
-        return $clienti;
+        return $clienti[];
     }
 
     public function cercaUtentePerId($id, $role) {
@@ -205,9 +203,9 @@ FROM `clienti` ";
         $cliente->setId($row['clienti_id']);
         $cliente->setNome($row['clienti_nome']);
         $cliente->setCognome($row['clienti_cognome']);
+        $cliente->setEmail($row['clienti_email']);
         $cliente->setCitta($row['clienti_citta']);
         $cliente->setVia($row['clienti_via']);
-        $cliente->setEmail($row['clienti_email']);
         $cliente->setNumeroCivico($row['clienti_numero_civico']);
         $cliente->setRuolo(User::Cliente);
         $cliente->setUsername($row['clienti_username']);
@@ -256,8 +254,8 @@ FROM `clienti` ";
                 break;
             case User::Gestore:
                 $count = $this->salvaGestore($user, $stmt);
+                break;
         }
-
         $stmt->close();
         $mysqli->close();
         return $count;
@@ -269,16 +267,16 @@ FROM `clienti` ";
 * @param mysqli_stmt $stmt un prepared statement
 * @return int il numero di righe modificate
 */
-    private function salvaCliente(Cliente $c, mysqli_stmt $stmt) { 
-        $query = " update clienti set 
+    private function salvaCliente(Cliente $d, mysqli_stmt $stmt) {
+        $query = " update clienti set
 					password = ?,
 					nome = ?,
 					cognome = ?,
 					email = ?,
 					numero_civico = ?,
 					citta = ?,
-					via = ?,
-					where clienti.id = ?
+					via = ?
+					where gestori.id = ?
 					";
         $stmt->prepare($query);
         if (!$stmt) {
@@ -287,14 +285,14 @@ FROM `clienti` ";
             return 0;
         }
 
-        if (!$stmt->bind_param('sssissi',$c->getNome(), $c->getCognome(), $c->getEmail(), $c->getNumeroCivico(), $c->getCitta(), $c->getVia(), $c->getId())) {
-            error_log("[salvaCliente] impossibile" .
+        if (!$stmt->bind_param('ssssissi', $d->getPassword(), $d->getNome(), $d->getCognome(), $d->getEmail(), $d->getNumeroCivico(), $d->getCitta(), $d->getVia(), $d->getId())) {
+            error_log("[salvaGestore] impossibile" .
                     " effettuare il binding in input");
             return 0;
         }
 
         if (!$stmt->execute()) {
-            error_log("[salvaCliente] impossibile" .
+            error_log("[salvaGestore] impossibile" .
                     " eseguire lo statement");
             return 0;
         }
@@ -316,7 +314,7 @@ FROM `clienti` ";
 					email = ?,
 					numero_civico = ?,
 					citta = ?,
-					via = ?,
+					via = ?
 					where gestori.id = ?
 					";
         $stmt->prepare($query);
@@ -355,7 +353,7 @@ FROM `clienti` ";
         }
         $row = array();
         $bind = $stmt->bind_result(
-                $row['gestori_id'], $row['gestori_nome'], $row['gestori_cognome'], $row['gestori_email'], $row['gestori_citta'], $row['gestori_via'], $row['gestori_numero_civico'], $row['gestori_username'], $row['gestori_password']);
+                $row['gestori_id'], $row['gestori_nome'], $row['gestori_cognome'], $row['gestori_email'], $row['gestori_via'], $row['gestori_numero_civico'], $row['gestori_citta'], $row['gestori_username'], $row['gestori_password']);
                                 
         if (!$bind) {
             error_log("[caricaGestoreDaStmt] impossibile" .
@@ -386,8 +384,8 @@ FROM `clienti` ";
         }
 
         $row = array();
-        $bind = $stmt->bind_result(
-                $row['clienti_id'], $row['clienti_nome'], $row['clienti_cognome'], $row['clienti_email'], $row['clienti_citta'], $row['clienti_via'], $row['clienti_numero_civico'], $row['clienti_username'], $row['clienti_password']);
+         $bind = $stmt->bind_result(
+                $row['clienti_id'], $row['clienti_nome'], $row['clienti_cognome'], $row['clienti_email'], $row['clienti_via'], $row['clienti_numero_civico'], $row['clienti_citta'], $row['clienti_username'], $row['clienti_password']);
         if (!$bind) {
             error_log("[caricaClienteDaStmt] impossibile" .
                     " effettuare il binding in output");

@@ -49,6 +49,7 @@ class GestoreController extends BaseController {
                     // modifica dei dati anagrafici
                     case 'anagrafica':
                         $vd->setSottoPagina('anagrafica');
+                        
                         break;
 
                     //visual film
@@ -90,7 +91,7 @@ class GestoreController extends BaseController {
 
                         // in questo array inserisco i messaggi di
                         // cio' che non viene validato
-                        $msg = array();
+                        $msg = array();               
                         $this->aggiornaIndirizzo($user, $request, $msg);
                         $this->creaFeedbackUtente($msg, $vd, "Indirizzo aggiornato");
                         $this->showHomeUtente($vd);

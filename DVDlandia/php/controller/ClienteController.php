@@ -1,6 +1,10 @@
 <?php
 
 include_once 'BaseController.php';
+include_once basename(__DIR__) . '/../model/UserFactory.php';
+include_once basename(__DIR__) . '/../model/Dvd.php';
+include_once basename(__DIR__) . '/../model/DvdFactory.php';
+
 
 /**
 * Controller del cliente
@@ -15,13 +19,7 @@ class ClienteController extends BaseController {
         parent::__construct();
     }
 
-    /**
-* Restituisce il timestamp odierno, calcolato a mezzanotte
-* @return int
-*/
-    private static function oggi() {
-        return strtotime("now") - strtotime("now") % 86400;
-    }
+
 
     /**
 * Metodo per gestire l'input dell'utente.
@@ -36,11 +34,6 @@ class ClienteController extends BaseController {
         // imposto la pagina
         $vd->setPagina($request['page']);
 
-
-        // gestion dei comandi
-        // tutte le variabili che vengono create senza essere utilizzate
-        // direttamente in questo switch, sono quelle che vengono poi lette
-        // dalla vista, ed utilizzano le classi del modello
 
         if (!$this->loggedIn()) {
             // utente non autenticato, rimando alla home
@@ -66,11 +59,10 @@ class ClienteController extends BaseController {
                     case 'anagrafica':
                         $vd->setSottoPagina('anagrafica');
                         break;
-                        
-                    //visualizzazione del parco auto
-                    case 'dvdi':
-                        $dvdi = DvdFactory::instance()->getDvdi();
-                        //print_r($dvdi);
+                       
+                    //visualizzazione dell'elenco di film
+                    case 'film':
+                        $dvdi = DvdFactory::instance()->getDvdi();                     
                         $vd->setSottoPagina('elencoFilm');
                         break;
 
@@ -89,22 +81,10 @@ class ClienteController extends BaseController {
                 switch ($request["cmd"]) {
 
                     // logout
-                    case 'logout':
-                    	echo "comando logout";
+                    case 'logout':                    
                         $this->logout($vd);
                         break;
-
-                    // aggiornamento indirizzo
-                    case 'indirizzo':
-
-                        // in questo array inserisco i messaggi di
-                        // cio' che non viene validato
-                        $msg = array();
-                        $this->aggiornaIndirizzo($user, $request, $msg);
-                        $this->creaFeedbackUtente($msg, $vd, "Indirizzo aggiornato");
-                        $this->showHomeUtente($vd);
-                        break;
-
+                        
                     // cambio email
                     case 'email':
                         // in questo array inserisco i messaggi di
@@ -114,6 +94,19 @@ class ClienteController extends BaseController {
                         $this->creaFeedbackUtente($msg, $vd, "Email aggiornata");
                         $this->showHomeUtente($vd);
                         break;
+                        
+                    // aggiornamento indirizzo
+                    case 'indirizzo':
+
+                        // in questo array inserisco i messaggi di
+                        // cio' che non viene validato
+                        $msg = array();                 
+                        $this->aggiornaIndirizzo($user, $request, $msg);
+                        $this->creaFeedbackUtente($msg, $vd, "Indirizzo aggiornato");
+                        $this->showHomeUtente($vd);
+                        break;
+
+
 
                     // cambio password
                     case 'password':
@@ -122,7 +115,7 @@ class ClienteController extends BaseController {
                         $msg = array();
                         $this->aggiornaPassword($user, $request, $msg);
                         $this->creaFeedbackUtente($msg, $vd, "Password aggiornata");
-                        $this->showHomeCliente($vd);
+                        $this->showHomeUtente($vd);  //HO CAMBIATO CLIENTE CON UTENTE
                         break;
 
                     default : $this->showLoginPage($vd);

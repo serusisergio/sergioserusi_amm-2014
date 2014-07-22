@@ -49,6 +49,7 @@ class GestoreController extends BaseController {
                     // modifica dei dati anagrafici
                     case 'anagrafica':
                         $vd->setSottoPagina('anagrafica');
+                        var_dump($vd)
                         break;
 
                     //visual film
@@ -90,7 +91,7 @@ class GestoreController extends BaseController {
 
                         // in questo array inserisco i messaggi di
                         // cio' che non viene validato
-                        $msg = array();
+                        $msg = array();               
                         $this->aggiornaIndirizzo($user, $request, $msg);
                         $this->creaFeedbackUtente($msg, $vd, "Indirizzo aggiornato");
                         $this->showHomeUtente($vd);
@@ -187,38 +188,7 @@ class GestoreController extends BaseController {
 
         // richiamo la vista
         require basename(__DIR__) . '/../view/master.php';
-    }
-
-    /**
-     * Aggiorna i dati relativi ad un appello in base ai parametri specificati
-     * dall'utente
-     * @param Appello $mod_appello l'appello da modificare
-     * @param array $request la richiesta da gestire
-     * @param array $msg array dove inserire eventuali messaggi d'errore
-     */
-    private function updateAppello($mod_appello, &$request, &$msg) {
-        if (isset($request['insegnamento'])) {
-            $insegnamento = InsegnamentoFactory::instance()->creaInsegnamentoDaCodice($request['insegnamento']);
-            if (isset($insegnamento)) {
-                $mod_appello->setInsegnamento($insegnamento);
-            } else {
-                $msg[] = "<li>Insegnamento non trovato</li>";
-            }
-        }
-        if (isset($request['data'])) {
-            $data = DateTime::createFromFormat("d/m/Y", $request['data']);
-            if (isset($data) && $data != false) {
-                $mod_appello->setData($data);
-            } else {
-                $msg[] = "<li>La data specificata non &egrave; corretta</li>";
-            }
-        }
-        if (isset($request['posti'])) {
-            if (!$mod_appello->setCapienza($request['posti'])) {
-                $msg[] = "<li>La capienza specificata non &egrave; corretta</li>";
-            }
-        }
-    }
+	}
 
 
 }

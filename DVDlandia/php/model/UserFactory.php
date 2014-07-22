@@ -6,8 +6,8 @@ include_once 'Cliente.php';
 include_once 'Db.php';
 
 /**
-* Classe per la creazione degli utenti del sistema
-*/
+ * Classe per la creazione degli utenti del sistema
+ */
 class UserFactory {
 
     private static $singleton;
@@ -17,9 +17,9 @@ class UserFactory {
     }
 
     /**
-* Restiuisce un singleton per creare utenti
-* @return \UserFactory
-*/
+     * Restiuisce un singleton per creare utenti
+     * @return \UserFactory
+     */
     public static function instance() {
         if (!isset(self::$singleton)) {
             self::$singleton = new UserFactory();
@@ -29,11 +29,11 @@ class UserFactory {
     }
 
     /**
-* Carica un utente tramite username e password
-* @param string $username
-* @param string $password
-* @return \User|\Gestore|\Cliente
-*/
+     * Carica un utente tramite username e password
+     * @param string $username
+     * @param string $password
+     * @return \User|\Gestore|\Cliente
+     */
     public function caricaUtente($username, $password) {
 
 
@@ -96,22 +96,22 @@ class UserFactory {
     }
 
     /**
-* Restituisce la lista dei clienti presenti nel sistema
-* @return array
-*/
+     * Restituisce la lista dei clienti presenti nel sistema
+     * @return array
+     */
     public function &getListaClienti() {
         $clienti = array();
         $query = "SELECT
-id as clienti_id,
-nome as clienti_nome,
-cognome as clienti_cognome,
-citta as clienti_citta,
-via as clienti_via,
-email as clienti_email,
-numero_civico as clienti_numero_civico,
-username as clienti_username,
-password as clienti_password
-FROM `clienti` ";
+                  id as clienti_id,
+                  nome as clienti_nome,
+                  cognome as clienti_cognome,
+                  citta as clienti_citta,
+                  via as clienti_via,
+                  email as clienti_email,
+                  numero_civico as clienti_numero_civico,
+                  username as clienti_username,
+                  password as clienti_password
+                  FROM `clienti` ";
 
         $mysqli = Db::getInstance()->connectDb();
         if (!isset($mysqli)) {
@@ -128,7 +128,6 @@ FROM `clienti` ";
         while ($row = $result->fetch_array()) {
             $clienti[] = self::creaClienteDaArray($row);
         }
-        
         return $clienti;
     }
 
@@ -195,10 +194,10 @@ FROM `clienti` ";
     }
 
     /**
-* Crea un cliente da una riga del db
-* @param type $row
-* @return \cliente
-*/
+     * Crea un cliente da una riga del db
+     * @param type $row
+     * @return \cliente
+     */
     public function creaClienteDaArray($row) {
         $cliente = new Cliente();
         $cliente->setId($row['clienti_id']);
@@ -215,10 +214,10 @@ FROM `clienti` ";
     }
 
     /**
-* Crea un gestore da riga del db
-* @param type $row
-* @return \Gestore
-*/
+     * Crea un gestore da riga del db
+     * @param type $row
+     * @return \Gestore
+     */
     public function creaGestoreDaArray($row) {
         $gestore = new Gestore();
         $gestore->setId($row['gestori_id']);
@@ -235,10 +234,10 @@ FROM `clienti` ";
     }
 
     /**
-* Salva i dati relativi ad un utente sul db
-* @param User $user
-* @return il numero di righe modificate
-*/
+     * Salva i dati relativi ad un utente sul db
+     * @param User $user
+     * @return il numero di righe modificate
+     */
     public function salva(User $user) {
         $mysqli = Db::getInstance()->connectDb();
         if (!isset($mysqli)) {
@@ -255,6 +254,7 @@ FROM `clienti` ";
                 break;
             case User::Gestore:
                 $count = $this->salvaGestore($user, $stmt);
+                break;
         }
         $stmt->close();
         $mysqli->close();
@@ -262,11 +262,11 @@ FROM `clienti` ";
     }
 
     /**
-* Rende persistenti le modifiche all'anagrafica di un cliente sul db
-* @param Cliente $c il cliente considerato
-* @param mysqli_stmt $stmt un prepared statement
-* @return int il numero di righe modificate
-*/
+     * Rende persistenti le modifiche all'anagrafica di un cliente sul db
+     * @param Cliente $c il cliente considerato
+     * @param mysqli_stmt $stmt un prepared statement
+     * @return int il numero di righe modificate
+     */
     private function salvaCliente(Cliente $d, mysqli_stmt $stmt) {
         $query = " update clienti set
 					password = ?,
@@ -280,7 +280,7 @@ FROM `clienti` ";
 					";
         $stmt->prepare($query);
         if (!$stmt) {
-            error_log("[salvaGestore] impossibile" .
+            error_log("[salvaCliente] impossibile" .
                     " inizializzare il prepared statement");
             return 0;
         }
@@ -301,11 +301,11 @@ FROM `clienti` ";
     }
 
     /**
-* Rende persistenti le modifiche all'anagrafica di un gestore sul db
-* @param Gestore $d il gestore considerato
-* @param mysqli_stmt $stmt un prepared statement
-* @return int il numero di righe modificate
-*/
+     * Rende persistenti le modifiche all'anagrafica di un gestore sul db
+     * @param Gestore $d il gestore considerato
+     * @param mysqli_stmt $stmt un prepared statement
+     * @return int il numero di righe modificate
+     */
     private function salvaGestore(Gestore $d, mysqli_stmt $stmt) {
         $query = " update gestori set
 					password = ?,
@@ -340,10 +340,10 @@ FROM `clienti` ";
     }
 
     /**
-* Carica un gestore eseguendo un prepared statement
-* @param mysqli_stmt $stmt
-* @return null
-*/
+     * Carica un gestore eseguendo un prepared statement
+     * @param mysqli_stmt $stmt
+     * @return null
+     */
     private function caricaGestoreDaStmt(mysqli_stmt $stmt) {
 
         if (!$stmt->execute()) {
@@ -354,7 +354,7 @@ FROM `clienti` ";
         $row = array();
         $bind = $stmt->bind_result(
                 $row['gestori_id'], $row['gestori_nome'], $row['gestori_cognome'], $row['gestori_email'], $row['gestori_via'], $row['gestori_numero_civico'], $row['gestori_citta'], $row['gestori_username'], $row['gestori_password']);
-                                
+
         if (!$bind) {
             error_log("[caricaGestoreDaStmt] impossibile" .
                     " effettuare il binding in output");
@@ -371,10 +371,10 @@ FROM `clienti` ";
     }
 
     /**
-* Carica un cliente eseguendo un prepared statement
-* @param mysqli_stmt $stmt
-* @return null
-*/
+     * Carica un cliente eseguendo un prepared statement
+     * @param mysqli_stmt $stmt
+     * @return null
+     */
     private function caricaClienteDaStmt(mysqli_stmt $stmt) {
 
         if (!$stmt->execute()) {
@@ -402,7 +402,6 @@ FROM `clienti` ";
     }
 
 }
-
 ?>
 
 

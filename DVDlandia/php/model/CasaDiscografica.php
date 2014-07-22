@@ -2,6 +2,8 @@
 
 /**
 * Classe CasaDiscografica
+* Considero la classe CasaDiscografica come se fosse una "specie" di etichetta, si lega con la categoria di film.
+* quindi una CasaDiscografica crea determinate categorie di film
 */
 class CasaDiscografica {
     

@@ -17,7 +17,8 @@
             <td><?= $dvd->getTitolo() ?></td>
             <td><?= $dvd->getAnno() ?></td>
             <td><?= $dvd->getPrezzo() ?> €/giorno</td>
-            <td><a href="gestore/film?cmd=cancella_dvd&dvd=<?= $dvd->getId() ?>" title="Elimina il dvd"></td>
+            <td><a href="gestore/film?cmd=cancella_dvd&dvd=<?= $dvd->getId()?>" title="Elimina il dvd">
+<img src="../images/cancella.png" alt="Elimina"></a>
         </tr>
     <? } ?>
 </table>
