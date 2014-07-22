@@ -33,7 +33,7 @@ Scegli una fra le seguenti sezioni:
 <ul class="panel" id="panel"> 
 <li><a id="anagraficaa" href="gestore/anagrafica">Anagrafica</a></li>
 <li><a id="noleggio" href="gestore/noleggi">Noleggi</a></li>
-<li><a id="filmm" href="gestore/dvdi">Film</a></li>
+<li><a id="filmm" href="gestore/film">Film</a></li>
 </ul>
 <?php
         break;
