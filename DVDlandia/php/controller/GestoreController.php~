@@ -121,7 +121,7 @@ class GestoreController extends BaseController {
                         break;
 
                     // creazione di un nuovo film
-                    case 'nuovo_dvd':
+                    case 'dvd_nuovo':
                         $vd->setSottoPagina('elencoFilm');
                         $msg = array();
                         $nuovo = new Dvd();
@@ -148,7 +148,7 @@ class GestoreController extends BaseController {
 
                         $this->creaFeedbackUtente($msg, $vd, "Film creato");
 
-                        $dvd = DvdFactory::instance()->getDvdi();
+                        $dvdi = DvdFactory::instance()->getDvdi();
                         $this->showHomeUtente($vd);
                         break;
 

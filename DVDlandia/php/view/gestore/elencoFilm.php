@@ -8,7 +8,7 @@
         <th>Prezzo</th>
         <th>Cancella</th>
     </tr>
-    <?
+    <?   
     foreach ($dvdi as $dvd) {
         ?>
         <tr>

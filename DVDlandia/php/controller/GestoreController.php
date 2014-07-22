@@ -148,7 +148,7 @@ class GestoreController extends BaseController {
 
                         $this->creaFeedbackUtente($msg, $vd, "Film creato");
 
-                        $dvd = DvdFactory::instance()->getDvdi();
+                        $dvdi = DvdFactory::instance()->getDvdi();
                         $this->showHomeUtente($vd);
                         break;
 
