@@ -66,9 +66,8 @@ class CategoriaFactory {
         $id = 0;
         $nomecategoria = "";
         $idcasadiscografica = 0;
-        $prezzo = 0;
 
-        if (!$stmt->bind_result($id, $nomecategoria, $idcasadiscografica, $prezzo)) {
+        if (!$stmt->bind_result($id, $nomecategoria, $idcasadiscografica)) {
             error_log("[getCategoriaPerId] impossibile" .
                     " effettuare il binding in output");
             return $categoria;
@@ -77,7 +76,6 @@ class CategoriaFactory {
             $categoria->setId($id);
             $categoria->setNome($nomecategoria);
             $categoria->setCasaDiscografica(CasaDiscograficaFactory::instance()->getCasaDiscograficaPerId($idcasadiscografica));
-            $categoria->setPrezzo($prezzo);
         }
 
 
@@ -124,7 +122,7 @@ class CategoriaFactory {
         $categoria->setId($row['id']);
         $categoria->setNome($row['nomecategoria']);
         $categoria->setCasaDiscografica(CasaDiscograficaFactory::instance()->getCasaDiscograficaPerId($row['idcasadiscografica']));
-        $categoria->setPrezzo($row['prezzo']);
+        //$categoria->setPrezzo($row['prezzo']);
         return $categoria;
     }
 

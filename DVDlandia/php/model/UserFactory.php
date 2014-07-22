@@ -110,7 +110,7 @@ via as clienti_via,
 email as clienti_email,
 numero_civico as clienti_numero_civico,
 username as clienti_username,
-password as clienti_password,
+password as clienti_password
 FROM `clienti` ";
 
         $mysqli = Db::getInstance()->connectDb();
@@ -125,11 +125,10 @@ FROM `clienti` ";
             $mysqli->close();
             return $clienti;
         }
-
         while ($row = $result->fetch_array()) {
             $clienti[] = self::creaClienteDaArray($row);
         }
-
+        
         return $clienti;
     }
 
@@ -205,9 +204,9 @@ FROM `clienti` ";
         $cliente->setId($row['clienti_id']);
         $cliente->setNome($row['clienti_nome']);
         $cliente->setCognome($row['clienti_cognome']);
+        $cliente->setEmail($row['clienti_email']);
         $cliente->setCitta($row['clienti_citta']);
         $cliente->setVia($row['clienti_via']);
-        $cliente->setEmail($row['clienti_email']);
         $cliente->setNumeroCivico($row['clienti_numero_civico']);
         $cliente->setRuolo(User::Cliente);
         $cliente->setUsername($row['clienti_username']);
@@ -257,7 +256,6 @@ FROM `clienti` ";
             case User::Gestore:
                 $count = $this->salvaGestore($user, $stmt);
         }
-
         $stmt->close();
         $mysqli->close();
         return $count;
@@ -269,32 +267,32 @@ FROM `clienti` ";
 * @param mysqli_stmt $stmt un prepared statement
 * @return int il numero di righe modificate
 */
-    private function salvaCliente(Cliente $c, mysqli_stmt $stmt) {
+    private function salvaCliente(Cliente $d, mysqli_stmt $stmt) {
         $query = " update clienti set
-				password = ?,
-				nome = ?,
-				cognome = ?,
-				email = ?,
-				numero_civico = ?,
-				citta = ?,
-				via = ?,
-				where clienti.id = ?
-				";
+					password = ?,
+					nome = ?,
+					cognome = ?,
+					email = ?,
+					numero_civico = ?,
+					citta = ?,
+					via = ?
+					where gestori.id = ?
+					";
         $stmt->prepare($query);
         if (!$stmt) {
-            error_log("[salvaCliente] impossibile" .
+            error_log("[salvaGestore] impossibile" .
                     " inizializzare il prepared statement");
             return 0;
         }
 
-        if (!$stmt->bind_param('ssssisssi', $c->getPassword(), $c->getNome(), $c->getCognome(), $c->getEmail(), $c->getNumeroCivico(), $c->getCitta(), $c->getVia(), $c->getId())) {
-            error_log("[salvaCliente] impossibile" .
+        if (!$stmt->bind_param('ssssissi', $d->getPassword(), $d->getNome(), $d->getCognome(), $d->getEmail(), $d->getNumeroCivico(), $d->getCitta(), $d->getVia(), $d->getId())) {
+            error_log("[salvaGestore] impossibile" .
                     " effettuare il binding in input");
             return 0;
         }
 
         if (!$stmt->execute()) {
-            error_log("[salvaCliente] impossibile" .
+            error_log("[salvaGestore] impossibile" .
                     " eseguire lo statement");
             return 0;
         }
@@ -310,15 +308,15 @@ FROM `clienti` ";
 */
     private function salvaGestore(Gestore $d, mysqli_stmt $stmt) {
         $query = " update gestori set
-			password = ?,
-			nome = ?,
-			cognome = ?,
-			email = ?,
-			numero_civico = ?,
-			citta = ?,
-			via = ?,
-			where gestori.id = ?
-			";
+					password = ?,
+					nome = ?,
+					cognome = ?,
+					email = ?,
+					numero_civico = ?,
+					citta = ?,
+					via = ?
+					where gestori.id = ?
+					";
         $stmt->prepare($query);
         if (!$stmt) {
             error_log("[salvaGestore] impossibile" .
@@ -326,7 +324,7 @@ FROM `clienti` ";
             return 0;
         }
 
-        if (!$stmt->bind_param('ssssisssi', $d->getPassword(), $d->getNome(), $d->getCognome(), $d->getEmail(), $d->getNumeroCivico(), $d->getCitta(), $d->getVia(), $d->getId())) {
+        if (!$stmt->bind_param('ssssissi', $d->getPassword(), $d->getNome(), $d->getCognome(), $d->getEmail(), $d->getNumeroCivico(), $d->getCitta(), $d->getVia(), $d->getId())) {
             error_log("[salvaGestore] impossibile" .
                     " effettuare il binding in input");
             return 0;

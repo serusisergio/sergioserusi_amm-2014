@@ -6,9 +6,9 @@ include_once basename(__DIR__) . '/../model/Dvd.php';
 include_once basename(__DIR__) . '/../model/DvdFactory.php';
 
 /**
-* Controller gestore
-* @author Davide Spano
-*/
+ * Controller gestore
+ * @author Davide Spano
+ */
 class GestoreController extends BaseController {
 
     const elenco = 'elenco';
@@ -18,9 +18,9 @@ class GestoreController extends BaseController {
     }
 
     /**
-* Metodo per gestire l'input dell'utente.
-* @param type $request la richiesta da gestire
-*/
+     * Metodo per gestire l'input dell'utente.
+     * @param type $request la richiesta da gestire
+     */
     public function handleInput(&$request) {
 
         // creo il descrittore della vista
@@ -96,7 +96,7 @@ class GestoreController extends BaseController {
                         } else {
                             $datafine = null;
                         }
-                        
+
                         $noleggi = NoleggioFactory::instance()->ricercaNoleggi(
                                 $user, $dvd_id, $cliente_id, $datainizio, $datafine);
 
@@ -106,10 +106,11 @@ class GestoreController extends BaseController {
                     //visual film
                     case 'film':
                         $dvdi = DvdFactory::instance()->getDvdi();
+                        var_dump($dvdi);
                         $vd->setSottoPagina('elencoFilm');
                         break;
 
-                   
+
 
                     default:
                         $vd->setSottoPagina('home');
@@ -197,9 +198,9 @@ class GestoreController extends BaseController {
                                 $msg[] = '<li> Impossibile creare il film </li>';
                             }
                         }
-                        
+
                         $this->creaFeedbackUtente($msg, $vd, "Film creato");
-                        
+
                         $dvd = DvdFactory::instance()->getDvdi();
                         $this->showHomeUtente($vd);
                         break;
@@ -221,7 +222,7 @@ class GestoreController extends BaseController {
                         $dvd = DvdFactory::instance()->getDvdi();
                         $this->showHomeUtente($vd);
                         break;
-               
+
                     // default
                     default:
                         $this->showHomeUtente($vd);
@@ -241,15 +242,14 @@ class GestoreController extends BaseController {
         // richiamo la vista
         require basename(__DIR__) . '/../view/master.php';
     }
-  
-  
+
     /**
-* Aggiorna i dati relativi ad un appello in base ai parametri specificati
-* dall'utente
-* @param Appello $mod_appello l'appello da modificare
-* @param array $request la richiesta da gestire
-* @param array $msg array dove inserire eventuali messaggi d'errore
-*/
+     * Aggiorna i dati relativi ad un appello in base ai parametri specificati
+     * dall'utente
+     * @param Appello $mod_appello l'appello da modificare
+     * @param array $request la richiesta da gestire
+     * @param array $msg array dove inserire eventuali messaggi d'errore
+     */
     private function updateAppello($mod_appello, &$request, &$msg) {
         if (isset($request['insegnamento'])) {
             $insegnamento = InsegnamentoFactory::instance()->creaInsegnamentoDaCodice($request['insegnamento']);
@@ -275,12 +275,12 @@ class GestoreController extends BaseController {
     }
 
     /**
-* Ricerca un apperllo per id all'interno di una lista
-* @param int $id l'id da cercare
-* @param array $appelli un array di appelli
-* @return Appello l'appello con l'id specificato se presente nella lista,
-* null altrimenti
-*/
+     * Ricerca un apperllo per id all'interno di una lista
+     * @param int $id l'id da cercare
+     * @param array $appelli un array di appelli
+     * @return Appello l'appello con l'id specificato se presente nella lista,
+     * null altrimenti
+     */
     private function cercaAppelloPerId($id, &$appelli) {
         foreach ($appelli as $appello) {
             if ($appello->getId() == $id) {
@@ -292,10 +292,10 @@ class GestoreController extends BaseController {
     }
 
     /**
-* Calcola l'id per un nuovo appello
-* @param array $appelli una lista di appelli
-* @return int il prossimo id degli appelli
-*/
+     * Calcola l'id per un nuovo appello
+     * @param array $appelli una lista di appelli
+     * @return int il prossimo id degli appelli
+     */
     private function prossimoIdAppelli(&$appelli) {
         $max = -1;
         foreach ($appelli as $a) {
@@ -307,10 +307,10 @@ class GestoreController extends BaseController {
     }
 
     /**
-* Restituisce il prossimo id per gli elenchi degli esami
-* @param array $elenco un elenco di esami
-* @return int il prossimo identificatore
-*/
+     * Restituisce il prossimo id per gli elenchi degli esami
+     * @param array $elenco un elenco di esami
+     * @return int il prossimo identificatore
+     */
     private function prossimoIndiceElencoListe(&$elenco) {
         if (!isset($elenco)) {
             return 0;
@@ -324,11 +324,11 @@ class GestoreController extends BaseController {
     }
 
     /**
-* Restituisce l'identificatore dell'elenco specificato in una richiesta HTTP
-* @param array $request la richiesta HTTP
-* @param array $msg un array per inserire eventuali messaggi d'errore
-* @return l'identificatore dell'elenco selezionato
-*/
+     * Restituisce l'identificatore dell'elenco specificato in una richiesta HTTP
+     * @param array $request la richiesta HTTP
+     * @param array $msg un array per inserire eventuali messaggi d'errore
+     * @return l'identificatore dell'elenco selezionato
+     */
     private function getIdElenco(&$request, &$msg) {
         if (!isset($request['elenco'])) {
             $msg[] = "<li> Non &egrave; stato selezionato un elenco</li>";
@@ -346,11 +346,11 @@ class GestoreController extends BaseController {
     }
 
     /**
-* Restituisce l'appello specificato dall'utente tramite una richiesta HTTP
-* @param array $request la richiesta HTTP
-* @param array $msg un array dove inserire eventuali messaggi d'errore
-* @return Appello l'appello selezionato, null se non e' stato trovato
-*/
+     * Restituisce l'appello specificato dall'utente tramite una richiesta HTTP
+     * @param array $request la richiesta HTTP
+     * @param array $msg un array dove inserire eventuali messaggi d'errore
+     * @return Appello l'appello selezionato, null se non e' stato trovato
+     */
     private function getAppello(&$request, &$msg) {
         if (isset($request['appello'])) {
             $appello_id = filter_var($request['appello'], FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
@@ -365,4 +365,5 @@ class GestoreController extends BaseController {
     }
 
 }
+
 ?>

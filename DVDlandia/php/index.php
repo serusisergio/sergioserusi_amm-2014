@@ -24,7 +24,7 @@ class FrontController {
 
             switch ($request["page"]) {
                 case "login":
-                	echo "Stampa da dentro Switch case login";
+                	
                     // la pagina di login e' accessibile a tutti,
                     // la facciamo gestire al BaseController
                     $controller = new BaseController();
@@ -33,7 +33,7 @@ class FrontController {
 
                 // studente
                 case 'cliente':
-               		echo "Stampa da dentro Switch case cliente";
+               		
                     // la pagina degli studenti e' accessibile solo agli studenti
                     // agli studenti ed agli amminstratori
                     // il controllo viene fatto dal controller apposito
@@ -47,7 +47,7 @@ class FrontController {
 
                 // docente
                 case 'gestore':
-                	echo "Stampa da dentro Switch case gestore";
+                	
                     // la pagina dei docenti e' accessibile solo
                     // ai docenti ed agli amminstratori
                     // il controllo viene fatto dal controller apposito
@@ -60,12 +60,12 @@ class FrontController {
                     break;
 
                 default:
-                	echo "Stampa da dentro Switch dafault";
+                	
                     self::write404();
                     break;
             }
         } else {
-        	echo "Stampa da dentro else()pagina non esistente";
+        	
             self::write404();
         }
     }

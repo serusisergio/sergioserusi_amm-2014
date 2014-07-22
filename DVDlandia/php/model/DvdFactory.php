@@ -84,6 +84,7 @@ class DvdFactory {
             $dvd->setAnno($anno);
             $dvd->setTitolo($titolo);
             $dvd->setIsPrenotabile(NoleggioFactory::instance()->isDvdPrenotabile($id, "now"));
+            $dvd->setPrezzo(3);
             $dvdi[] = $dvd;
         }
         return $dvdi;
@@ -95,7 +96,8 @@ class DvdFactory {
         $dvd->setCategoria(CategoriaFactory::instance()->getCategoriaPerId($row['dvdi_idcategoria']));
         $dvd->setAnno($row['dvdi_anno']);
         $dvd->setTitolo($row['dvdi_titolo']);
-        $dvd->setIsPrenotabile(NoleggioFactory::instance()->isDvdPrenotabile($row['dvd_id'], "now"));
+        $dvd->setIsPrenotabile(NoleggioFactory::instance()->isDvdPrenotabile($row['dvdi_id'], "now"));
+        $dvd->setPrezzo(3);
         return $dvd;
     }
     
@@ -238,6 +240,7 @@ values (?, ?, ?)";
             $dvd->setTitolo($titolo);
             $dvd->setCategoria(CategoriaFactory::instance()->getCategoriaPerId($idcategoria));
             $dvd->setIsPrenotabile(NoleggioFactory::instance()->isDvdPrenotabile($id, "now"));
+            $dvd->setPrezzo(3);
           }
 
 

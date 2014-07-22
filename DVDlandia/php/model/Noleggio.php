@@ -12,7 +12,8 @@ class Noleggio {
     private $cliente;    
     private $dvd;    
     private $costoPrenot;
-   
+
+  
 
     public function getDvd() {
         return $this->dvd;

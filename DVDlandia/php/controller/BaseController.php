@@ -42,8 +42,7 @@ class BaseController {
             // abbiamo ricevuto un comando
             switch ($request["cmd"]) {            	
                 case 'login':
-                	echo "Stampa da dentro Switch case login BAse";
-                    $username = isset($request['user']) ? $request['user'] : '';
+                      $username = isset($request['user']) ? $request['user'] : '';
                     $password = isset($request['password']) ? $request['password'] : '';
                     $this->login($vd, $username, $password);
                     // questa variabile viene poi utilizzata dalla vista
@@ -54,16 +53,13 @@ class BaseController {
             }
         } else {
             if ($this->loggedIn()) {
-            	echo "Utente autenticato Base";
                 //utente autenticato
                 // questa variabile viene poi utilizzata dalla vista
                 $user = UserFactory::instance()->cercaUtentePerId($_SESSION[self::user], $_SESSION[self::role]);
 
                 $this->showHomeUtente($vd);
             } else {
-            	echo "Stampa da dentro else,non  autenticato BAse";
                 // utente non autenticato
-                echo "utente non autenticato Base";
                 $this->showLoginPage($vd);
             }
         }

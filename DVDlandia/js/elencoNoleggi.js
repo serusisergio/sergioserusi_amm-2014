@@ -2,13 +2,13 @@
 * To change this template, choose Tools | Templates
 * and open the template in the editor.
 */
-
 $(document).ready(function () {
-    
     $(".error").hide();
     $("#tabella_noleggi").hide();
+    $("#datainizio").hide();
     
     $('#filtra').click(function(e){
+        alert("ok");
         // impedisco il submit
         e.preventDefault();
         var _dvd = $( "#dvd option:selected" ).attr('value');
@@ -27,6 +27,7 @@ $(document).ready(function () {
             data : par,
             dataType: 'json',
             success: function (data, state) {
+                alert("data");
                 if(data['errori'].length === 0){
                     // nessun errore
                     $(".error").hide();

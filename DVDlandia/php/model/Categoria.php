@@ -25,12 +25,7 @@ class Categoria {
     private $nome;
 
     
-    /**
-* Prezzo
-* @var double
-*/
-    private $prezzo;
-    
+
     /**
 * Restituisce identificatore unico per la classe
 * @return int
@@ -73,14 +68,6 @@ class Categoria {
 
 
     
-    public function getPrezzo() {
-        return $this->prezzo;
-    }
-
-    public function setPrezzo($prezzo) {
-        $this->prezzo = $prezzo;
-    }
-
 
 }
 

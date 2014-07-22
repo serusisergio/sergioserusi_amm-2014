@@ -1,56 +1,57 @@
 <?php
 
 /**
-* @author SerusiSergio
-* Classe DVD
-*/
+ * @author SerusiSergio
+ * Classe DVD
+ */
 class Dvd {
 
     /**
-* Categoria del film
-* @var categoria
-*/
+     * Categoria del film
+     * @var categoria
+     */
     private $categoria;
 
     /**
-* Anno in cui è stato girato il film
-* @var int
-*/
+     * Anno in cui è stato girato il film
+     * @var int
+     */
     private $anno;
 
     /**
-* Flag che indica se è possibile prenotare il film
-* @var boolean
-*/
+     * Flag che indica se è possibile prenotare il film
+     * @var boolean
+     */
     private $isprenotabile;
 
     /**
-* Titolo del fim
-* @var String
-*/
+     * Titolo del fim
+     * @var String
+     */
     private $titolo;
+    private $prezzo;
 
     /**
-* Costruttore
-*/
+     * Costruttore
+     */
     public function __costruct() {
         
     }
 
     /**
-* restituisce un id unico per il dvd
-* @return int
-*/
+     * restituisce un id unico per il dvd
+     * @return int
+     */
     public function getId() {
         return $this->id;
     }
 
     /**
-* Imposta un id unico per il dvd
-* @param int $id
-* @return boolean true se il valore e' stato aggiornato correttamente,
-* false altrimenti
-*/
+     * Imposta un id unico per il dvd
+     * @param int $id
+     * @return boolean true se il valore e' stato aggiornato correttamente,
+     * false altrimenti
+     */
     public function setId($id) {
         $intVal = filter_var($id, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
         if (!isset($intVal)) {
@@ -101,6 +102,14 @@ class Dvd {
 
     public function setTitolo($titolo) {
         $this->titolo = $titolo;
+    }
+
+    public function getPrezzo() {
+        return $this->prezzo;
+    }
+
+    public function setPrezzo($prezzo) {
+        $this->prezzo = $prezzo;
     }
 
 }

@@ -269,17 +269,17 @@ FROM `clienti` ";
 * @param mysqli_stmt $stmt un prepared statement
 * @return int il numero di righe modificate
 */
-    private function salvaCliente(Cliente $c, mysqli_stmt $stmt) {
-        $query = " update clienti set
-				password = ?,
-				nome = ?,
-				cognome = ?,
-				email = ?,
-				numero_civico = ?,
-				citta = ?,
-				via = ?,
-				where clienti.id = ?
-				";
+    private function salvaCliente(Cliente $c, mysqli_stmt $stmt) { 
+        $query = " update clienti set 
+					password = ?,
+					nome = ?,
+					cognome = ?,
+					email = ?,
+					numero_civico = ?,
+					citta = ?,
+					via = ?,
+					where clienti.id = ?
+					";
         $stmt->prepare($query);
         if (!$stmt) {
             error_log("[salvaCliente] impossibile" .
@@ -287,7 +287,7 @@ FROM `clienti` ";
             return 0;
         }
 
-        if (!$stmt->bind_param('ssssisssi', $c->getPassword(), $c->getNome(), $c->getCognome(), $c->getEmail(), $c->getNumeroCivico(), $c->getCitta(), $c->getVia(), $c->getId())) {
+        if (!$stmt->bind_param('sssissi',$c->getNome(), $c->getCognome(), $c->getEmail(), $c->getNumeroCivico(), $c->getCitta(), $c->getVia(), $c->getId())) {
             error_log("[salvaCliente] impossibile" .
                     " effettuare il binding in input");
             return 0;
@@ -310,15 +310,15 @@ FROM `clienti` ";
 */
     private function salvaGestore(Gestore $d, mysqli_stmt $stmt) {
         $query = " update gestori set
-password = ?,
-nome = ?,
-cognome = ?,
-email = ?,
-numero_civico = ?,
-citta = ?,
-via = ?,
-where gestori.id = ?
-";
+					password = ?,
+					nome = ?,
+					cognome = ?,
+					email = ?,
+					numero_civico = ?,
+					citta = ?,
+					via = ?,
+					where gestori.id = ?
+					";
         $stmt->prepare($query);
         if (!$stmt) {
             error_log("[salvaGestore] impossibile" .
@@ -326,7 +326,7 @@ where gestori.id = ?
             return 0;
         }
 
-        if (!$stmt->bind_param('sssssssi', $d->getPassword(), $d->getNome(), $d->getCognome(), $d->getEmail(), $d->getNumeroCivico(), $d->getCitta(), $d->getVia(), $d->getId())) {
+        if (!$stmt->bind_param('ssssissi', $d->getPassword(), $d->getNome(), $d->getCognome(), $d->getEmail(), $d->getNumeroCivico(), $d->getCitta(), $d->getVia(), $d->getId())) {
             error_log("[salvaGestore] impossibile" .
                     " effettuare il binding in input");
             return 0;
@@ -355,7 +355,7 @@ where gestori.id = ?
         }
         $row = array();
         $bind = $stmt->bind_result(
-                $row['gestori_id'], $row['gestori_nome'], $row['gestori_cognome'], $row['gestori_email'], $row['gestori_via'], $row['gestori_numero_civico'], $row['gestori_citta'], $row['gestori_username'], $row['gestori_password']);
+                $row['gestori_id'], $row['gestori_nome'], $row['gestori_cognome'], $row['gestori_email'], $row['gestori_citta'], $row['gestori_via'], $row['gestori_numero_civico'], $row['gestori_username'], $row['gestori_password']);
                                 
         if (!$bind) {
             error_log("[caricaGestoreDaStmt] impossibile" .
@@ -387,7 +387,7 @@ where gestori.id = ?
 
         $row = array();
         $bind = $stmt->bind_result(
-                $row['clienti_id'], $row['clienti_nome'], $row['clienti_cognome'], $row['clienti_email'], $row['clienti_via'], $row['clienti_numero_civico'], $row['clienti_citta'], $row['clienti_username'], $row['clienti_password']);
+                $row['clienti_id'], $row['clienti_nome'], $row['clienti_cognome'], $row['clienti_email'], $row['clienti_citta'], $row['clienti_via'], $row['clienti_numero_civico'], $row['clienti_username'], $row['clienti_password']);
         if (!$bind) {
             error_log("[caricaClienteDaStmt] impossibile" .
                     " effettuare il binding in output");

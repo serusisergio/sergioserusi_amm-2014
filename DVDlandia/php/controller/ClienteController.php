@@ -104,7 +104,6 @@ class ClienteController extends BaseController {
                         // in questo array inserisco i messaggi di
                         // cio' che non viene validato
                         $msg = array();
-                        echo "Aggiornamento";
                         $this->aggiornaIndirizzo($user, $request, $msg);
                         $this->creaFeedbackUtente($msg, $vd, "Indirizzo aggiornato");
                         $this->showHomeUtente($vd);
