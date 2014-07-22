@@ -7,24 +7,26 @@
     <body>
         <h1>Accesso al progetto</h1>
         <p>
-        	La homepage del progetto si trova sulla URL <a href="php/login">www.unica.it</a>
+        	La homepage del progetto si trova sulla URL <a href="php/login">www.DVDlandia.it</a>
         </p>
         <p>
         <h3>Descrizione</h3>
-        La seguente applicazione ha il compito di gestire il noleggio di Film.</br>
-        I tipi di utenti sono due, uno rappresenta il cliente e uno chi gestisce il negozio di noleggio (che verra individuato come gestore).        
+        L'applicazione seguente è stata creata ed utilizzata per scopo informativo verso il cliente.</br>
+        L'applicazione informa il cliente dei film prenotabili presenti nel negozio.
+        Il gestore del negozio può inserire ed eliminare i film presenti.</br></br>
+        I tipi di utenti sono due, uno rappresenta il cliente e uno chi gestisce il negozio di noleggio (che verra individuato come gestore).  
+        </br>      
         I clienti possono:
         <ul>
             <li>Visualizzare un elenco di DVD presenti</li>
-            <li>Procedere al noleggio</li>
+            <li>Gestire la propria anagrafica</li>
             
 
         </ul>
         I gestori possono:
         <ul>
-            <li>Aggiungere DVD all'elenco</li>
-            <li>Rimuovere DVD dall'elenco</li>
-            <li>Visualizzare i DVD presenti</li>
+            <li>Aggiungere Film all'elenco</li>
+            <li>Rimuovere Film dall'elenco</li>
             <li>Gestire la propria anagrafica</li>
         </ul>
     </p>
@@ -33,10 +35,9 @@
     <ol>
         <li>Utilizzo di HTML e CSS</li>
         <li>Utilizzo di PHP e MySQL</li>
-        <li>Utilizzo del pattern MVC</li>
-        <li>Transazione per la compravendita di dvd</li>
-        <li>Caricamento ajax dei risultati filtrati dello storico delle vendite</li>        
+        <li>Utilizzo del pattern MVC</li>      
         <li>Due ruoli (cliente e gestore)</li>
+        <li>Transazioni
 
     </ol>
 </p>
