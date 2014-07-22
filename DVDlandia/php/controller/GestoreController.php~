@@ -121,7 +121,7 @@ class GestoreController extends BaseController {
                         break;
 
                     // creazione di un nuovo film
-                    case 'dvd_nuovo':
+                    case 'nuovo_dvd':
                         $vd->setSottoPagina('elencoFilm');
                         $msg = array();
                         $nuovo = new Dvd();
@@ -153,13 +153,13 @@ class GestoreController extends BaseController {
                         break;
 
 
-                    // cancella un veicolo
+                    // cancella un film
                     case 'cancella_dvd':
                         if (isset($request['dvd'])) {
                             $intVal = filter_var($request['dvd'], FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
                             if (isset($intVal)) {
 
-                                if (VeicoloFactory::instance()->cancellaPerId($intVal) != 1) {
+                                if (DvdFactory::instance()->cancellaPerId($intVal) != 1) {
                                     $msg[] = '<li> Impossibile cancellare il Film </li>';
                                 }
 

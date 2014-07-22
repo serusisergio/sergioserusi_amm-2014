@@ -7,7 +7,7 @@
 
 class Categoria {
     /**
-* Identificatore unico del veicolo
+* Identificatore unico del film
 * @var int
 */
     private $id;

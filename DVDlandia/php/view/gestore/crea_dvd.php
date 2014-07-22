@@ -1,7 +1,7 @@
 <div class="input-form">
     <h3>Crea Film</h3>
     <form method="post" action="gestore/crea_dvd">
-        <input type="hidden" name="cmd" value="nuovo_dvd"/>
+        <input type="hidden" name="cmd" value="dvd_nuovo"/>
         <label for="categoria">Categoria</label>
         <select name="categoria" id="categoria">
             <?php foreach ($categorie as $categoria) { ?>
