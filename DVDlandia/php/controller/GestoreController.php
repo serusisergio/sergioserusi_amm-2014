@@ -152,6 +152,7 @@ class GestoreController extends BaseController {
                         $this->showHomeUtente($vd);
                         break;
 
+
                     // cancella un film
                     case 'cancella_dvd':
                         if (isset($request['dvd'])) {
@@ -159,17 +160,17 @@ class GestoreController extends BaseController {
                             if (isset($intVal)) {
 
                                 if (DvdFactory::instance()->cancellaPerId($intVal) != 1) {
-                                    $msg[] = '<li> Impossibile cancellare il film </li>';
+                                    $msg[] = '<li> Impossibile cancellare il Film </li>';
                                 }
 
 
                                 $this->creaFeedbackUtente($msg, $vd, "Film eliminato");
                             }
                         }
-                        $dvd = DvdFactory::instance()->getDvdi();
+                        $dvdi = DvdFactory::instance()->getDvdi();
                         $this->showHomeUtente($vd);
                         break;
-
+               
                     // default
                     default:
                         $this->showHomeUtente($vd);

@@ -49,7 +49,7 @@ class GestoreController extends BaseController {
                     // modifica dei dati anagrafici
                     case 'anagrafica':
                         $vd->setSottoPagina('anagrafica');
-                        var_dump($vd)
+                        
                         break;
 
                     //visual film
@@ -152,24 +152,25 @@ class GestoreController extends BaseController {
                         $this->showHomeUtente($vd);
                         break;
 
-                    // cancella un film
+
+                    // cancella un veicolo
                     case 'cancella_dvd':
                         if (isset($request['dvd'])) {
                             $intVal = filter_var($request['dvd'], FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
                             if (isset($intVal)) {
 
-                                if (DvdFactory::instance()->cancellaPerId($intVal) != 1) {
-                                    $msg[] = '<li> Impossibile cancellare il film </li>';
+                                if (VeicoloFactory::instance()->cancellaPerId($intVal) != 1) {
+                                    $msg[] = '<li> Impossibile cancellare il Film </li>';
                                 }
 
 
                                 $this->creaFeedbackUtente($msg, $vd, "Film eliminato");
                             }
                         }
-                        $dvd = DvdFactory::instance()->getDvdi();
+                        $dvdi = DvdFactory::instance()->getDvdi();
                         $this->showHomeUtente($vd);
                         break;
-
+               
                     // default
                     default:
                         $this->showHomeUtente($vd);

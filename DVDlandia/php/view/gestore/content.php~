@@ -11,10 +11,7 @@ switch ($vd->getSottoPagina()) {
     case 'crea_dvd':
         include_once 'crea_dvd.php';
         break;
-        
-    case 'cancella_dvd':
-    	include_once 'cancella_dvd.php';
-    	break;
+
         ?>
 
 
