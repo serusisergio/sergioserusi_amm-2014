@@ -8,9 +8,6 @@ switch ($vd->getSottoPagina()) {
         include_once 'elencoFilm.php';
         break;
         
-    case 'cancella_dvd':
-        include_once 'cancella_dvd.php';
-        break;
         
         ?>
 <?php default: ?>

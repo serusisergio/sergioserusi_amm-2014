@@ -19,8 +19,8 @@ Benvenuto, <?= $user->getNome() ?>
 Scegli una fra le seguenti sezioni:
 </p>
 <ul class="panel" id="panel"> 
-<li><a id="anagrafica" href="cliente/anagrafica">Anagrafica</a></li>
-<li><a id="film" href="cliente/film">Film</a></li>
+<li><a id="anagraficaa" href="cliente/anagrafica">Anagrafica</a></li>
+<li><a id="filmm" href="cliente/film">Film</a></li>
 </ul>
 <?php
         break;
