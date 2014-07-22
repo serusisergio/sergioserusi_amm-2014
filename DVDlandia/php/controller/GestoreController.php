@@ -106,7 +106,7 @@ class GestoreController extends BaseController {
                     //visual film
                     case 'film':
                         $dvdi = DvdFactory::instance()->getDvdi();
-                        var_dump($dvdi);
+                        //var_dump($dvdi);
                         $vd->setSottoPagina('elencoFilm');
                         break;
 
