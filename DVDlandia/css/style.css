@@ -117,6 +117,7 @@ header {
     
     #anagraficaa{
         background-image: url('../images/anagrafica.png');
+        padding-right:190px;
         background-repeat: no-repeat;
         border-top-left-radius: 19px;
    		border-bottom-left-radius: 15px;
@@ -128,20 +129,13 @@ header {
     #filmm{
         background-image: url('../images/images.jpg');
         background-repeat: no-repeat;   
+        padding-right:190px;
         border-top-left-radius: 19px;
    		border-bottom-left-radius: 15px;
    		border-top-right-radius: 19px;    
    		border-bottom-right-radius: 15px; 	
     }
 
-    #noleggio{
-        background-image: url('../images/noleggio.jpg');
-        background-repeat: no-repeat; 
-        border-top-left-radius: 19px;
-   		border-bottom-left-radius: 15px;
-   		border-top-right-radius: 19px;    
-   		border-bottom-right-radius: 15px;   	
-    }
 
     .panel li a{
         display: block;
