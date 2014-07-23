@@ -267,7 +267,7 @@ class UserFactory {
      * @param mysqli_stmt $stmt un prepared statement
      * @return int il numero di righe modificate
      */
-    private function salvaCliente(Cliente $d, mysqli_stmt $stmt) {
+    private function salvaCliente(Cliente $c, mysqli_stmt $stmt) {
         $query = " update clienti set
 					password = ?,
 					nome = ?,
@@ -276,7 +276,7 @@ class UserFactory {
 					numero_civico = ?,
 					citta = ?,
 					via = ?
-					where gestori.id = ?
+					where clienti.id = ?
 					";
         $stmt->prepare($query);
         if (!$stmt) {
@@ -285,7 +285,7 @@ class UserFactory {
             return 0;
         }
 
-        if (!$stmt->bind_param('ssssissi', $d->getPassword(), $d->getNome(), $d->getCognome(), $d->getEmail(), $d->getNumeroCivico(), $d->getCitta(), $d->getVia(), $d->getId())) {
+        if (!$stmt->bind_param('ssssissi', $c->getPassword(), $c->getNome(), $c->getCognome(), $c->getEmail(), $c->getNumeroCivico(), $c->getCitta(), $c->getVia(), $c->getId())) {
             error_log("[salvaGestore] impossibile" .
                     " effettuare il binding in input");
             return 0;
